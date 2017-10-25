@@ -1,0 +1,379 @@
+{% load staticfiles %}
+<html>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>California Wine</title>
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
+
+<body class ="home-page" >
+			<!-- <header id="masthead" class="site-header" role="banner"> -->
+
+		<div class = "container-fluid headerinder">
+			<div class = "container1" id="mainmenu">
+<!-- 			<div class="site-branding"> -->
+
+				<div class = "row">
+		  			<div class="navbar-header">
+		  				<button type="button" class = "navbar-toggle collapsed" data-toggle="collapse"
+		  				data-target=".navbar-collapse">
+		  					<span class = "sr-only"> Toggle Navigation </span>
+		  					<span class = "icon-bar"></span>
+		  					<span class = "icon-bar"></span>
+		  					<span class = "icon-bar"></span>
+
+
+		  				</button>
+		  				<div class = "desktop-pic">
+			  				<a href ="/home" accesskey="h">
+			  					<img width="300" height="300" src="/static/img/CWC_Logo_Color.png">
+			  				</a>
+		  				</div>
+		  			</div>
+  			<!-- style="height:1px;" -->
+		  			<div class="navbar-collapse collapse" >
+		  				<ul class = "nav navbar-nav mainnav">
+			  				<li><a href="/about">About Us</a></li>
+							<li><a href="/winery">Winery</a></li>
+			  				<li><a href="/still_wine">Still Wines</a></li>
+			  				<li><a href="/sparkling">Sparkling Program</a></li>
+			  				<li><a href="/contact">Contact Us</a></li>
+			  				<li><a href="/news">What's New</a></li>
+			  				<li><a href="/purchase">Buy Our Wine</a></li>
+
+		  				</ul>
+
+		  			</div>
+
+		  			<div class = "mobile-pic">
+			  				<a href ="/home" accesskey="h">
+			  					<img width="300" height="300" src="/static/img/CWC_Logo_Color.png">
+			  				</a>
+		  			</div>
+
+  				</div>
+
+
+
+			</div>
+
+		<div class = "brandscouter" >
+				<div class = "wrapper">
+					<div class = "row">
+						<div class = "col-md-12">
+						    <ul class = "col-md-1 col-xs-6"> 
+							</ul>
+							<ul class = "col-md-2 col-xs-6"> 
+								<li> <a href="/business"> Our Business </a> </li> 
+								<li> <a href="/team">Our Team</a> </li>
+							</ul>
+							<ul class = "col-md-2 col-xs-6"> 
+								<li> <a href="/winery"> Our Winery </a> </li>
+								<li> <a href="/ice_house"> About the Ice House </a></li>
+
+							</ul>
+							<ul class = "col-md-3 col-xs-6"> 
+							</ul>
+
+							<ul class = "col-md-2 col-xs-6"> 
+								<li> <a href="/sparkling"> Our Sparkling Wine </a> </li>
+								<li> <a href="/champenoise"> Méthode Champenoise </a></li>
+								<li> <a href="/serendipity"> Serendipity Sparkling Wine </a></li>
+							</ul>
+
+							<ul class = "col-md-4 col-xs-6"> 
+							</ul>
+
+							<ul class = "col-md-2 col-xs-6"> 
+								<li> <a href="/news"> What's New </a> </li>
+								<li> <a href="/event"> Event Calendar </a></li>
+							</ul>
+
+							<ul class = "col-md-2 col-xs-6"> 
+								<li> <a href="/still_wine"> Still Wines </a> </li>
+								<li> <a href="/sparkling"> Sparkling Wines </a></li>
+							</ul>
+
+
+						</div>
+
+					</div>
+
+				</div>
+		</div>
+
+
+
+		</div>
+	<div id = "page" class = "site">
+
+
+		<div id = "content" class="site-content">
+
+
+
+			<div id = "summary">
+				<h1> Still Wines </h1>
+				<p>
+					We source our products from the vineyards and wineries of California and beyond. Please review our current offerings and make use of the search tools below. Note, our page is updated weekly. We may have just received products that are not listed! Please send us a note for the most up-to-date information.<br>
+				</p>
+
+				<h2> Reds: </h2>
+
+					<div id = "temp1">
+
+						<table id = "wines" name="usrform">
+							<tr>
+								<th>Red</th>
+								<th>Variety</th>
+								<th>AVA</th>
+								<th>Inventory</th>
+								<th>Units</th>
+								<th>Lot</th>
+								<th>Comments</th>
+
+							</tr>
+
+						{% for red in reds %}
+							<tr>
+
+							    <th><input id={{ red.lot }} name="check" type="checkbox" value ={{red.variety}}></th>
+							    <th>{{ red.variety}}</th>
+							    <th>{{ red.ava }}</th>
+							    <th>{{ red.current }}</th>
+							    <th>{{ red.units  }}</th>
+							    <th>{{ red.lot }}</th>
+							    <th>{{ red.comments }}</th>
+							</tr>
+						{% endfor %}
+
+					</table>
+
+					</div>
+
+				<h2> Whites: </h2>
+
+					<div id = "temp2">
+						<table id = "wines" name="usrform">
+							<tr>
+								<th>White</th>
+								<th>Variety</th>
+								<th>AVA</th>
+								<th>Inventory</th>
+								<th>Units</th>
+								<th>Lot</th>
+								<th>Comments</th>
+
+							</tr>
+
+						{% for white in whites %}
+							<tr>
+							    <th><input id= {{ white.lot }} name="check" type="checkbox" value= {{ white.variety }} ></th>
+							    <th>{{ white.variety}}</th>
+							    <th>{{ white.ava }}</th>
+							    <th>{{ white.current }}</th>
+							    <th>{{ white.units  }}</th>
+							    <th>{{ white.lot }}</th>
+							    <th>{{ white.comments }}</th>
+							</tr>
+						{% endfor %}
+					</table>
+					</div>
+
+
+				<p>
+
+					<input class="btn" type="submit" value="Request Selected Items" onclick="obtainSelection()"> 
+				<!-- </form> -->
+
+					<br>
+					Didn't find what you were looking for? <br>
+					<a href = "/contact"> Contact us</a> and we'll craft something just for you
+
+				</p>
+			</div>
+		</div>
+
+	<div id = "request">
+				<form  name = "usrform" method="post">
+					<label> Name: <span style="color: red">*</span></label> <br>
+				    <input placeholder="First " type="text" name="first" required> <input placeholder="Last " type="text" name="last" required><br>
+				    <label> Mailing Address: <span style="color: red">*</span></label> <br>
+				    <input placeholder="Address 1" type="text" name="address1" required>  <br>
+				    <input placeholder="Address 2" type="text" name="address2" >  <br>
+				    <label> Country: <span style="color: red">*</span></label><br>
+				    <input placeholder="Country" type="text" name="country" required> <br>
+				    <label> State: <span style="color: red">*</span></label><br>
+				    <input placeholder="State" type="text" name="state" required> <br>
+				    <label> Zipcode: <span style="color: red">*</span></label><br>
+				    <input placeholder="ZipCode" type="text" name="zip" required> <br>    
+				    <label> Email: <span style="color: red">*</span></label><br>
+				    <input placeholder="Email" type="text" name="email" required><br>
+				    <label> Phone: <span style="color: red">*</span></label><br>
+				    <input placeholder="Phone" type="text" name="phone" required><br>
+
+			  		<label> Tell us a little more about what you're looking for: </label><br>
+				    <textarea placeholder="Please limit to 500 characters..." rows="4" cols="50" maxlength="500" name="usrform"  style="border:solid 1px black;"></textarea><br>
+
+				    <label> How did you hear about us? <span style="color: red">*</span></label><br>
+				    <textarea placeholder="Please limit to 500 characters..." rows="4" cols="50" maxlength="500" name="usrform1"  style="border:solid 1px black;" required></textarea><br>
+
+				   	<label>You've requested:</label>
+				   	<table id = "requested" form="usrform">
+
+			   		</table>
+
+			    <input class="btn" type="submit">
+			</form>
+	</div>
+
+
+
+	<footer id="footer" class="site-footer" role="contentinfo" itemscope>
+			<div id="tertiary" class = "widget-area widget-area--footer" role="complementary" itemscope>
+				<div class="block-grid block-grid-3">
+					<div id ="text-3" class = "widget widget_text block-grid-item">
+						<h4 class="widget-title"> <a href = "/contact"> Contact Info </a> </h4>
+						<div class="textwidget">
+				<!-- 			<p> -->
+								Phone: +1 (209) 727-0396<br>
+								Fax: +1 (209) 727-0391<br>
+								<a href = "/team"> Robert Indelicato </a> <br>
+								<a href="mailto:robert@californiawineclassics.com">robert@californiawineclassics.com </a><br>
+								<a href = "/leslie"> Leslie Bloudoff </a><br>
+								<a href="mailto:leslie@californiawineclassics.com">leslie@californiawineclassics.com </a><br>
+
+<!-- 							</p> -->
+						</div>
+					</div>
+					<div id ="text-3" class = "widget widget_text block-grid-item">
+						<h4 class="widget-title"> <a href="/winery" > Location </a> </h4>
+						<div class="textwidget">
+							<!-- <p> -->
+								27 Locust Street  <br>
+								Lodi, CA 95240<br>
+								USA<br>
+							<!-- </p> -->
+						</div>
+						<h4 class="widget-title"> Hours</h4>
+						<div class="textwidget">
+							<!-- <p> -->
+								8 a.m. - 5 p.m. PST, USA
+							<!-- </p> -->
+						</div>
+					</div>
+					<div id ="text-3" class = "widget widget_text block-grid-item">
+						<h4 class="widget-title"> <a href="/news"> What's New </a></h4>
+						<ul>
+						<li>
+							<a target="_blank" href = "https://twitter.com/CAWineClassics?lang=en">
+							<img width="50" height="50" src="static/img/tweet.jpg" style="border:1px solid black; border-radius: 10px;">
+							</a>
+						</li>
+						<li>
+							<a target="_blank" href = "https://www.instagram.com/cawineclassics/">
+								<img width="80" height="80" src="static/img/ig.jpg" >
+							</a>
+						</li>
+						<li>
+							<a target="_blank" href = "https://www.facebook.com/CAWineClassics">
+								<img width="50" height="50" src="static/img/facebookicon.png" style="margin-right: 10px">
+							</a>
+						</li>
+						<li>
+							<a target="_blank" href = "https://www.linkedin.com/company/california-wine-classics">
+								<img width="50" height="50" src="static/img/linkedin.jpg" >
+							</a>
+						</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</footer>
+
+
+</body>
+
+
+<script >
+
+var masterList = [];
+
+
+function obtainSelection()
+{
+	document.getElementById("request").style.display = "block"; 
+	document.getElementById("summary").style.display = "none"; 
+	var url = window.location.origin;
+	checkboxes = document.getElementsByTagName("input"); 
+
+	
+	for (var i = 0; i < checkboxes.length; i++) {
+	    var checkbox = checkboxes[i];
+
+	    console.log(checkbox.checked);
+
+	    var temp = [];
+
+	    if (checkbox.checked == true)
+	    {
+	    	var currentRow = checkbox.parentNode.parentNode;
+	    	console.log(currentRow);
+	    	
+	    	temp.push(currentRow);
+	    	masterList.push(temp)
+	    }
+
+	} 
+
+	
+	renderSelection(masterList);
+
+
+}
+
+function renderSelection(masterList)
+{
+
+	var requested = document.getElementById("requested")
+
+
+	console.log(masterList);
+	console.log(masterList.length);
+
+
+	for(var count =0; count < masterList.length; count++)
+	{
+
+		var row = requested.insertRow(count);
+		console.log(masterList[count][0]);
+
+
+		// row = masterList[count].innerHTML;
+		var tdList = masterList[count][0].getElementsByTagName("th");
+		console.log(tdList);
+		console.log(tdList.length);
+		
+		for (var num = 0; num < tdList.length; num++)
+		{
+			var col = row.insertCell(num);
+			console.log(tdList[num]);
+			col.innerHTML = tdList[num].innerHTML;
+		}
+	}
+	return true;
+}
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</html>

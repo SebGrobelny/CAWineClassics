@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>California Selection</title>
+
+    <link href="/static/style.css" rel="stylesheet" type="text/css">
+
+<body class ="home-page"  >
+			<header id="masthead" class="site-header" role="banner">
+
+			<div class="site-branding">
+
+				<div class = "dropMenu">
+
+					<div id="mobileMenu" onclick = "viewMenu()">
+	  					<div class="bar1"></div>
+	  					<div class="bar2"></div>
+	  					<div class="bar3"></div>
+					</div>
+
+					<div id = "dropdown">
+
+		  				<div class = "sub-nav"><a href="default.asp">About Us</a></div>
+  						<div class = "sub-nav"><a href="/still_wine">Still Wine</a></div>
+  						<div class = "sub-nav"><a href="news.asp">Sparkling Program</a></div>
+  						<div class = "sub-nav"><a href="/contact">Contact Us</a></div>
+  						<div class = "sub-nav"><a href="about.asp">What's New</a></div>
+  						<div class = "sub-nav"><a href="about.asp">Buy Our Wine</a></div>
+	  				</div>
+
+  				</div>
+
+				<div id = "nav-img">
+					<a href = "/home"><img width="50" height="50" src="http://demo.cedaro.com/wp-content/uploads/sites/4/2014/11/caldwell-icon.png"></a>
+				</div>
+				<div> 
+					<a> <h4 class="widget-title"> California Wine Classics </h4> </a>
+				</div>
+
+
+				<div class = "topbar"><a href="/about">About Us</a></div>
+  				<div class = "topbar"><a href="/still_wine">Still Wine</a></div>
+  				<div class = "topbar"><a href="/sparkling">Sparkling Program</a></div>
+  				<div class = "topbar"><a href="/contact">Contact Us</a></div>
+  				<div class = "topbar"><a href="/news">What's New</a></div>
+  				<div class = "topbar"><a href="/purchase">Buy Our Wine</a></div>
+			
+
+			</div>
+
+		</header>
+	<div id = "summary">
+		<p>
+			Thank you for your interest in our products.<br>
+			Please share some details so we can send wine to your table!<br>
+		</p>
+
+		<form action="{{ url_for('contact_db') }}" name = "usrform" method="post">
+			<label> Name: </label> <br>
+		    <input placeholder="First " type="text" name="first" > <input placeholder="Last " type="text" name="last" ><br>
+		    <label> Mailing Address: </label> <br>
+		    <input placeholder="Address 1" type="text" name="address1" >  <br>
+		    <input placeholder="Address 2" type="text" name="address2" >  <br>
+		    <input placeholder="Country" type="text" name="country" > <input placeholder="State" type="text" name="state" > <input placeholder="ZipCode" type="text" name="zip" > <br>    
+		    <label> Email: </label><br>
+		    <input placeholder="Email" type="text" name="email" ><br>
+		    <label> Phone: </label><br>
+		    <input placeholder="Phone" type="text" name="phone" ><br>
+
+	  		<label> Tell us a little more about what you're looking for: </label><br>
+		    <textarea placeholder="Please limit to 500 characters..." rows="4" cols="50" maxlength="500" name="usrform"  style="border:solid 1px black;"></textarea><br>
+
+		   	<label>You've requested:</label>
+		   	<table id = "requested">
+
+		   	</table>
+
+		    <input type="submit">
+		</form>
+
+	</div>
+			<footer id="footer" class="site-footer" role="contentinfo" itemscope>
+
+			<section id="featured-content" class="featured-content hero-content">
+
+				<h2 class = "screen-reader-text"> Featured Content </h2>
+
+
+				<div class="block-grid block-grid-3">
+
+
+						<div id="featured-post-1" class = "featured-post block-grid-item has-post-thumbnail" style = "background-image: url(/static/img/IMG_2429.jpg)">
+							<a class ="featured-image">
+								<img src="/static/img/IMG_2429.jpg"
+								  alt= "Our Facility" itemprop="image" scale="0">
+
+							</a>
+							<h3 class="block-grid-item-title" itemprop="headline">
+								<!-- 2429 -->
+								<a> Winery </a>
+							</h3>
+
+						</div>
+
+						<div id="featured-post-1" class = "featured-post block-grid-item has-post-thumbnail" style = "background-image: url(/static/img/IMG_2459.jpg)">
+							<a class ="featured-image">
+								<img src="/static/img/IMG_2459.jpg"
+								  alt= "Our Products" itemprop="image" scale="0">
+
+							</a>
+							<h3 class="block-grid-item-title" itemprop="headline">
+								<!-- 2459 -->
+								<a> Wine</a>
+							</h3>
+
+						</div>
+
+						<div id="featured-post-1" class = "featured-post block-grid-item has-post-thumbnail" style = "background-image: url(/static/img/IMG_8271.jpg)">
+							<a class ="featured-image">
+								<img src="/static/img/IMG_8271.jpg"
+								  alt= "Contact Us" itemprop="image" scale="0">
+
+							</a>
+							<h3 class="block-grid-item-title" itemprop="headline">
+								<!-- 8271 -->
+								<a href="/contact"> Contact Us</a>
+							</h3>
+
+						</div>
+					</div>
+
+			</section>
+			<div id="tertiary" class = "widget-area widget-area--footer" role="complementary" itemscope>
+				<div class="block-grid block-grid-3">
+					<div id ="text-3" class = "widget widget_text block-grid-item">
+						<h4 class="widget-title">Contact Info</h4>
+						<div class="textwidget">
+				<!-- 			<p> -->
+								Phone: +1 (209) 727-0396<br>
+								Fax: +1 (209) 727-0391<br>
+								<a href = "/team"> Robert Indelicato </a> <br>
+								<a href="mailto:robert@californiawineclassics.com">robert@californiawineclassics.com </a><br>
+								<a href = "/team"> Leslie Bloudoff </a><br>
+								<a href="mailto:leslie@californiawineclassics.com">leslie@californiawineclassics.com </a><br>
+
+<!-- 							</p> -->
+						</div>
+					</div>
+					<div id ="text-3" class = "widget widget_text block-grid-item">
+						<h4 class="widget-title"> Location </h4>
+						<div class="textwidget">
+							<!-- <p> -->
+								27 Locust Street  <br>
+								Lodi, CA 95240<br>
+								USA<br>
+							<!-- </p> -->
+						</div>
+						<h4 class="widget-title"> Hours</h4>
+						<div class="textwidget">
+							<!-- <p> -->
+								8 a.m. - 5 p.m. PST, USA
+							<!-- </p> -->
+						</div>
+					</div>
+					<div id ="text-3" class = "widget widget_text block-grid-item">
+						<h4 class="widget-title"> <a href="/news"> What's New </a></h4>
+						<ul>
+						<li>
+							
+							<img width="50" height="50" src="static/img/tweet.jpg" >
+						
+						</li>
+						<li>
+							<a href = "https://www.instagram.com/cawineclassics/">
+								<img width="80" height="80" src="static/img/ig.jpg" >
+							</a>
+						</li>
+						<li>
+							<a href = "fb.me/CAWineClassics">
+								<img width="50" height="50" src="static/img/facebookicon.png" >
+							</a>
+						</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</footer>
+
+</body>
+
+<script src="static/render.js"></script>
