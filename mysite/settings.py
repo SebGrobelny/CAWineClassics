@@ -26,7 +26,7 @@ SECRET_KEY = '_bidmia1=f0#1c(ej^(#y_380ly+#1(saz23g$xd1j!c05#e8%'
 DEBUG = True
 
 # TODO:: Add in Heroku 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','cawineclassics.herokuapp.com']
 
 
 # Application definition
