@@ -66,7 +66,7 @@ def search(request):
 	if request.method == "GET":
 
 		variety = request.GET.get('search')
-		foundwine = Inventory.objects.filter(variety=variety)
+		foundwine = Inventory.objects.filter(variety_icontains=variety)
 
 	return render(request, 'main/search.html', {'foundwine':foundwine})
 
