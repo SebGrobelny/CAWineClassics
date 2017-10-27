@@ -118,7 +118,7 @@
 			<h2>Interested in learning more about California Wine Classics? We’ll get back to you in response to your inquiry. Thank you for reaching out!</div>
 
 		{% block content %}
-		    <form method="POST" class="usrform">{% csrf_token %}
+		    <form method="POST" class="usrform" onsubmit ="return alert('Thank you! Someone will contact you within 2 business days. We look forward to working with you! -California Wine Classics Team'); " >{% csrf_token %}
 		            {% for field in form %}
 			            {% if field.name == 'name' %}
 			            <label> Name: <span style="color: red">*</span> </label><br>
@@ -137,6 +137,9 @@
 			            {{field}} <br>
 			            {% elif field.name == 'address2' %}
 			            <label> Address 2: </label><br>
+			            {{field}} <br>
+			            {% elif field.name == 'city' %}
+			            <label> City: <span style="color: red">*</span> </label><br>
 			            {{field}} <br>
 			            {% elif field.name == 'state' %}
 			            <label> State: <span style="color: red">*</span> </label><br>

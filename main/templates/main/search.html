@@ -120,18 +120,17 @@
 
 
 			<div id = "summary">
-				<h1> Still Wines </h1>
-				<p>
-					We source our products from the vineyards and wineries of California and beyond. Please review our current offerings and make use of the search tools below. Note, our page is updated weekly. We may have just received products that are not listed! Please send us a note for the most up-to-date information.<br>
-				</p>
+				<form method="GET">
+				    Enter your search here: <input type="text" name="search"> <input type="submit" value="Search" />
+				</form><br/><br/>
 
-				<h2> Reds: </h2>
 
-					<div id = "temp1">
 
-						<table id = "wines" name="usrform">
+				{% if foundwine %}
+				<div id = "temp2">
+						<table id = "requested" form="usrform">
 							<tr>
-								<td>Red</td>
+								<td>Request</td>
 								<td>Variety</td>
 								<td>AVA</td>
 								<td>Inventory</td>
@@ -141,126 +140,37 @@
 
 							</tr>
 
-						{% for red in reds %}
+						{% for wine in foundwine %}
 							<tr>
-
-							    <td><input id={{ red.lot }} name="check" type="checkbox" value ={{red.lot}}></td>
-							    <td>{{ red.variety}}</td>
-							    <td>{{ red.ava }}</td>
-							    <td>{{ red.current }}</td>
-							    <td>{{ red.units  }}</td>
-							    <td>{{ red.lot }}</td>
-							    <td>{{ red.comments }}</td>
-							</tr>
-						{% endfor %}
-
-					</table>
-
-					</div>
-
-				<h2> Whites: </h2>
-
-					<div id = "temp2">
-						<table id = "wines" name="usrform">
-							<tr>
-								<td>White</td>
-								<td>Variety</td>
-								<td>AVA</td>
-								<td>Inventory</td>
-								<td>Units</td>
-								<td>Lot</td>
-								<td>Comments</td>
-
-							</tr>
-
-						{% for white in whites %}
-							<tr>
-							    <td><input id= {{ white.lot }} name="check" type="checkbox" 
-							    	value= {{white.lot}} ></td>
-							    <td>{{ white.variety}}</td>
-							    <td>{{ white.ava }}</td>
-							    <td>{{ white.current }}</td>
-							    <td>{{ white.units  }}</td>
-							    <td>{{ white.lot }}</td>
-							    <td>{{ white.comments }}</td>
+							    <td><input id= {{ wine.lot }} name="check" type="checkbox" 
+							    	value= {{wine.lot}} ></td>
+							    <td>{{ wine.variety}}</td>
+							    <td>{{ wine.ava }}</td>
+							    <td>{{ wine.current }}</td>
+							    <td>{{ wine.units  }}</td>
+							    <td>{{ wine.lot }}</td>
+							    <td>{{ wine.comments }}</td>
 							</tr>
 						{% endfor %}
 					</table>
+					<input class="btn" type="submit">
 					</div>
+				
+				{% else %}
+				<p> Item not found </p>
 
 
-				<p>
+				{%endif%}
 
-					<input class="btn" type="submit" value="Request Selected Items" onclick="obtainSelection()"> 
-				<!-- </form> -->
 
-					<br>
-					Didn't find what you were looking for? <br>
-					<a href = "/contact"> Contact us</a> and we'll craft something just for you
 
-				</p>
+
 			</div>
 		</div>
 
-	<div id = "request">
-			{% block content %}
-		    <form method="POST" class="usrform" onsubmit ="return alert('Thank you! Someone will contact you within 2 business days. We look forward to working with you! -California Wine Classics Team'); " >{% csrf_token %}
-		            {% for field in form %}
-			            {% if field.name == 'name' %}
-			            <label> Name: <span style="color: red">*</span> </label><br>
-			            {{field}} <br>
-			            {% elif field.name == 'last_name' %}
-			            <label> Last Name: <span style="color: red">*</span> </label><br>
-			            {{field}} <br>
-			            {% elif field.name == 'email' %}
-			            <label> Email: <span style="color: red">*</span> </label><br>
-			            {{field}} <br>
-			            {% elif field.name == 'phone' %}
-			            <label> Phone Number: <span style="color: red">*</span> </label><br>
-			            {{field}} <br>
-			            {% elif field.name == 'address1' %}
-			            <label> Address 1: <span style="color: red">*</span> </label><br>
-			            {{field}} <br>
-			            {% elif field.name == 'address2' %}
-			            <label> Address 2: </label><br>
-			            {{field}} <br>
-			            {% elif field.name == 'city' %}
-			            <label> City: <span style="color: red">*</span> </label><br>
-			            {{field}} <br>
-			            {% elif field.name == 'state' %}
-			            <label> State: <span style="color: red">*</span> </label><br>
-			            {{field}} <br>
-			            {% elif field.name == 'zipcode' %}
-			            <label> Zipcode: <span style="color: red">*</span> </label><br>
-			            {{field}} <br>
-			            {% elif field.name == 'country' %}
-			            <label> Country: <span style="color: red">*</span> </label><br>
-			            {{field}} <br>
-			            {% elif field.name == 'single' %}
-			            <label> I am a(n): <span style="color: red">*</span> </label><br>
-			            {{field}} <br>
-			            {% elif field.name == 'looking' %}
-			            <label> Tell us a little more about what you're looking for: </label><br>
-			            {{field}} <br>
-			            {% elif field.name == 'hear' %}
-			            <label> How did you hear about us? <span style="color: red">*</span></label><br>
-			            {{field}} <br>
-			            {% else %}
-			            <label> I am interested in : <span style="color: red">*</span> </label><br>
-			            {{field}} <br>
-			            {%endif%}
-
-    				{% endfor %}
 
 
-				   	<label>You've requested:</label>
-				   	<table id = "requested" form="usrform">
 
-			   		</table>
-
-			    <input class="btn" type="submit">
-			</form>
-			{% endblock %}
 	</div>
 
 
@@ -332,82 +242,5 @@
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script >
-//jquery to deal with row highlighting
-$(function(){
-    $("input[type='checkbox']").on('change', function() {
-        $(this).closest('tr').toggleClass("highlight", this.checked);
-    });
-});
-
-var masterList = [];
-
-
-function obtainSelection()
-{
-	document.getElementById("request").style.display = "block"; 
-	document.getElementById("summary").style.display = "none"; 
-	var url = window.location.origin;
-	checkboxes = document.getElementsByTagName("input"); 
-
-	
-	for (var i = 0; i < checkboxes.length; i++) {
-	    var checkbox = checkboxes[i];
-
-	    console.log(checkbox.checked);
-
-	    var temp = [];
-
-	    if (checkbox.checked == true)
-	    {
-	    	var currentRow = checkbox.parentNode.parentNode;
-	    	console.log(currentRow);
-	    	
-	    	temp.push(currentRow);
-	    	masterList.push(temp)
-	    }
-
-	} 
-
-	
-	renderSelection(masterList);
-
-
-}
-
-function renderSelection(masterList)
-{
-
-	var requested = document.getElementById("requested")
-
-
-	console.log(masterList);
-	console.log(masterList.length);
-
-
-	for(var count =0; count < masterList.length; count++)
-	{
-
-		var row = requested.insertRow(count);
-		console.log(masterList[count][0]);
-
-
-		// row = masterList[count].innerHTML;
-		var tdList = masterList[count][0].getElementsByTagName("td");
-		console.log(tdList);
-		console.log(tdList.length);
-		
-		for (var num = 0; num < tdList.length; num++)
-		{
-			var col = row.insertCell(num);
-			console.log(tdList[num]);
-			col.innerHTML = tdList[num].innerHTML;
-		}
-	}
-	return true;
-}
-
-</script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </html>

@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'news', views.news, name='news'),
     url(r'event', views.event, name='event'),
     url(r'still_wine', views.still_wine, name='still_wine'),
+    url(r'search', views.search, name='search'),
 ]
 
 

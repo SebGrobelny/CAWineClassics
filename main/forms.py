@@ -1,7 +1,7 @@
 from django import forms
 
 # from .models import Request
-from .models import Contact
+from .models import Contact, Request
 
 
 SINGLE = (
@@ -44,7 +44,7 @@ class ContactForm(forms.ModelForm):
 
 	class Meta:
 		model = Contact 
-		fields = ('name', 'email', 'phone', 'address1', 'address2', 'country', 'state', 'zipcode', 'single', 'multiple','looking','hear')
+		fields = ('name', 'email', 'phone', 'address1', 'address2','city', 'country', 'state', 'zipcode', 'single', 'multiple','looking','hear')
         # widgets = {
         #     'looking' : forms.Textarea(attrs={
         #         'rows': '5',
@@ -57,7 +57,32 @@ class ContactForm(forms.ModelForm):
         #     })
         #     }
 
+class RequestForm(forms.ModelForm):
+	
+	single = forms.ChoiceField(
+    	required = True,
+    	choices=SINGLE,
+    )
+	multiple = forms.MultipleChoiceField(
+        required=True,
+        widget=forms.CheckboxSelectMultiple,
+        choices=MULTIPLE,
+    )
+	looking = forms.CharField(
+        max_length = 500,
+        widget = forms.Textarea,
+    )
+	hear = forms.CharField(
+        max_length = 500,
+        widget = forms.Textarea,
+    )
+	address2 = forms.CharField(
+    	required = False,
+    )
 
+	class Meta:
+		model = Request
+		fields = ('name', 'email', 'phone', 'address1', 'address2','city', 'country', 'state', 'zipcode', 'single', 'multiple','looking','hear')
 	# first_name = forms.CharField(max_length=100)
 	# last_name = forms.CharField(max_length=100)
 	# email = forms.CharField(max_length=100)

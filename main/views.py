@@ -6,6 +6,7 @@ from django.shortcuts import render,redirect
 from .models import Inventory,Contact
 
 from .forms import ContactForm
+from .forms import RequestForm
 
 from datetime import datetime
 from pytz import timezone
@@ -41,7 +42,6 @@ def contact(request):
 
 		if form.is_valid():
 			# contact = Contact()
-			print request
 			contact = form.save(commit=False)
 
 			time = str(datetime.now(timezone('US/Pacific')))
@@ -52,12 +52,25 @@ def contact(request):
 
 
 			contact.save()
-			return redirect('splash', pk=contact.pk)
+			return redirect('home')
     #otherwise render form 
 	else:
 		form = ContactForm()
 	
 	return render(request,'main/contact.html', {'form': form})
+
+def search(request):
+	
+	foundwine=None
+	#check to see if method is get
+	if request.method == "GET":
+
+		variety = request.GET.get('search')
+		foundwine = Inventory.objects.filter(variety=variety)
+
+	return render(request, 'main/search.html', {'foundwine':foundwine})
+
+
 
 def winery(request):
 	return render(request,'main/winery.html')
@@ -86,7 +99,33 @@ def event(request):
 #view that interacts with DB
 def still_wine(request):
 	#use  QuerySet to obtain the desired filters
-	reds = Inventory.objects.filter(color='Red')
-	whites = Inventory.objects.filter(color='White')
+	if request.method == "POST":
+		form = RequestForm(request.POST)
 
-	return render(request, 'main/stillwine.html', { 'reds': reds, 'whites': whites})
+		if form.is_valid():
+
+
+			requestedwine = request.POST.getlist('check')
+			for wine in requestedwine:
+				print wine
+				form = RequestForm(request.POST)
+				inventory = Inventory.objects.filter(lot=wine)
+
+				requested  = form.save(commit=False)
+				requested.requestedwine= str(inventory[0].variety)+" , "+str(inventory[0].lot)
+
+				time = str(datetime.now(timezone('US/Pacific')))
+				time = time.split(".")[0]
+				requested.time = time
+
+				requested.save()
+
+
+			return redirect('home')
+
+	else:
+		reds = Inventory.objects.filter(color='Red')
+		whites = Inventory.objects.filter(color='White')
+		form = RequestForm()
+
+	return render(request, 'main/stillwine.html', { 'reds': reds, 'whites': whites, 'form': form})
