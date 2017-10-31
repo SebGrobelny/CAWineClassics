@@ -296,24 +296,6 @@ a {
 
 
 
-.rotate270 {
-    -webkit-transform: rotate(270deg);
-    -moz-transform: rotate(270deg);
-    -o-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
-    transform: rotate(270deg);
-
-
-}
-
-.rotate90{
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
-    /*margin-top: 150px;*/
-}
 #item {
     width: 5000px;
     min-height: 800px;
@@ -332,15 +314,13 @@ a {
 
 #item1 {
     
-    min-width: 378px;
-    max-width:1134px;
-    min-height: 800px;
-    max-height: auto;
+    min-width: 128px;
+    max-width:300px;
+
     float: left;
-    margin: 20px;
-    padding: 3px;
-    /*margin-top: 100px;*/
-    margin-top: 150px;
+    margin-right: 20px;
+
+
 }
 
 #row{
