@@ -36,3 +36,4 @@ for row in dataReader:
 		inventory.promised = row[15]
 		inventory.available = row[16]
 		inventory.comments = row[17]
+		inventory.save()
