@@ -22,7 +22,7 @@ for row in dataReader:
 		inventory = Inventory() 
 		inventory.packaged = row[3] 
 		inventory.color = row[5] 
-		inventory.variety = row[2] 
+		inventory.variety = row[4] 
 		inventory.lot = row[6] 
 		inventory.units = row[7]
 		inventory.storage = row[8]
