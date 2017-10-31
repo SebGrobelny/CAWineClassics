@@ -12,7 +12,7 @@ sys.path.append(your_djangoproject_home)
 print sys.path
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
-application = get_wsgi_application()
+# application = get_wsgi_application()
 
 from main.models import Inventory 
 import csv
