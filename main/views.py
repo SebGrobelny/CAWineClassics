@@ -68,6 +68,8 @@ def search(request):
 		print variety
 		AVA = request.GET.get('AVA')
 		print AVA
+		year = request.GET.get('year')
+		print year
 		form = RequestForm()
 
 		#overcoming the return None in some cases
@@ -78,9 +80,14 @@ def search(request):
 			if AVA:
 				foundwine = foundwine.filter(ava__icontains=AVA)
 
+			if year:
+				foundwine = foundwine.filter(year__icontains=year)
+
 		elif AVA:
 			foundwine = Inventory.objects.filter(ava__icontains=AVA)
-		
+
+			if year:
+				foundwine = foundwine.filter(year__icontains=year)
 		#both AVA and variety are none
 		else:
 			foundwine = None
