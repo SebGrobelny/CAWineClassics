@@ -4,7 +4,9 @@
 
 <div id = "summary">
 	<form method="GET">{% csrf_token %}
-	    Enter your search here: <input type="text" name="search"> <input type="submit" value="Search" />
+	    Enter Variety here: <input type="text" name="variety"> <br>
+	    Enter AVA here: <input type="text" name="AVA"><br>
+	    <input type="submit" value="Search" />
 	</form><br/><br/>
 
 	{% if foundwine %}

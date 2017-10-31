@@ -64,14 +64,25 @@ def search(request):
 	#check to see if method is get
 	if request.method == "GET":
 
-		variety = request.GET.get('search')
+		variety = request.GET.get('variety')
+		print variety
+		AVA = request.GET.get('AVA')
+		print AVA
 		form = RequestForm()
 
 		#overcoming the return None in some cases
-		try:
+
+		if variety:
 			foundwine = Inventory.objects.filter(variety__icontains=variety)
 
-		except:
+			if AVA:
+				foundwine = foundwine.filter(ava__icontains=AVA)
+
+		elif AVA:
+			foundwine = Inventory.objects.filter(ava__icontains=AVA)
+		
+		#both AVA and variety are none
+		else:
 			foundwine = None
 
 	elif request.method == "POST":
