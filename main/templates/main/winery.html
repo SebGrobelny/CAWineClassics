@@ -1,119 +1,6 @@
-{% load staticfiles %}
-<html>
+{% extends "main/home.html" %}
 
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>California Wine</title>
-
-    <!-- Custom Fonts -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
-
-<body class ="home-page">
-			<!-- <header id="masthead" class="site-header" role="banner"> -->
-
-		<div class = "container-fluid headerinder">
-			<div class = "container1" id="mainmenu">
-<!-- 			<div class="site-branding"> -->
-
-				<div class = "row">
-		  			<div class="navbar-header">
-		  				<button type="button" class = "navbar-toggle collapsed" data-toggle="collapse"
-		  				data-target=".navbar-collapse">
-		  					<span class = "sr-only"> Toggle Navigation </span>
-		  					<span class = "icon-bar"></span>
-		  					<span class = "icon-bar"></span>
-		  					<span class = "icon-bar"></span>
-
-
-		  				</button>
-		  				<div class = "desktop-pic">
-			  				<a href ="/home" accesskey="h">
-			  					<img width="300" height="300" src="/static/img/CWC_Logo_Color.png">
-			  				</a>
-		  				</div>
-		  			</div>
-  			<!-- style="height:1px;" -->
-		  			<div class="navbar-collapse collapse" >
-		  				<ul class = "nav navbar-nav mainnav">
-			  				<li><a href="/about">About Us</a></li>
-							<li><a href="/winery">Winery</a></li>
-			  				<li><a href="/still_wine">Still Wines</a></li>
-			  				<li><a href="/sparkling">Sparkling Program</a></li>
-			  				<li><a href="/contact">Contact Us</a></li>
-			  				<li><a href="/news">What's New</a></li>
-			  				<li><a href="/purchase">Buy Our Wine</a></li>
-
-		  				</ul>
-
-		  			</div>
-
-		  			<div class = "mobile-pic">
-			  				<a href ="/home" accesskey="h">
-			  					<img width="300" height="300" src="/static/img/CWC_Logo_Color.png">
-			  				</a>
-		  			</div>
-
-  				</div>
-
-
-
-			</div>
-
-		<div class = "brandscouter" >
-				<div class = "wrapper">
-					<div class = "row">
-						<div class = "col-md-12">
-						    <ul class = "col-md-1 col-xs-6"> 
-							</ul>
-							<ul class = "col-md-2 col-xs-6"> 
-								<li> <a href="/business"> Our Business </a> </li> 
-								<li> <a href="/team">Our Team</a> </li>
-							</ul>
-							<ul class = "col-md-2 col-xs-6"> 
-								<li> <a href="/winery"> Our Winery </a> </li>
-								<li> <a href="/ice_house"> About the Ice House </a></li>
-
-							</ul>
-							<ul class = "col-md-3 col-xs-6"> 
-							</ul>
-
-							<ul class = "col-md-2 col-xs-6"> 
-								<li> <a href="/sparkling"> Our Sparkling Wine </a> </li>
-								<li> <a href="/champenoise"> Méthode Champenoise </a></li>
-								<li> <a href="/serendipity"> Serendipity Sparkling Wine </a></li>
-							</ul>
-
-							<ul class = "col-md-4 col-xs-6"> 
-							</ul>
-
-							<ul class = "col-md-2 col-xs-6"> 
-								<li> <a href="/news"> What's New </a> </li>
-								<li> <a href="/event"> Event Calendar </a></li>
-							</ul>
-
-							<ul class = "col-md-2 col-xs-6"> 
-								<li> <a href="/still_wine"> Still Wines </a> </li>
-								<li> <a href="/sparkling"> Sparkling Wines </a></li>
-							</ul>
-
-
-						</div>
-
-					</div>
-
-				</div>
-		</div>
-
-
-
-		</div>
-	<div id = "page" class = "site">
-
+{% block content %}
 		<div class = "row pagesubnav">
 			<div class = "col-md-12">
 				<ul>
@@ -127,7 +14,7 @@
 		</div>
 
 
-		<div id = "content" class="site-content">
+<!-- 		<div id = "content" class="site-content"> -->
 			<div id = "summary">
 				<img src="/static/img/IMG_2430.jpg" width="800px" height="600px" alt= "Our Winery" itemprop="image" scale="1">
 
@@ -146,11 +33,11 @@
 			</div>
 
 
-		</div>
-
-
-	<footer id="footer" class="site-footer" role="contentinfo" itemscope>
-			<div id="tertiary" class = "widget-area widget-area--footer" role="complementary" itemscope>
+<!-- 		</div>
+ -->
+{% endblock %}
+			{%block footer%}
+						<div id="tertiary" class = "widget-area widget-area--footer" role="complementary" itemscope>
 				<div class="block-grid block-grid-3">
 					<div id ="text-3" class = "widget widget_text block-grid-item">
 						<h4 class="widget-title"> <a href = "/contact"> Contact Info </a> </h4>
@@ -170,9 +57,14 @@
 						<h4 class="widget-title"> <a href="/winery" > Location </a> </h4>
 						<div class="textwidget">
 							<!-- <p> -->
+								<h4 class="widget-title"> Address</h4>
 								27 Locust Street  <br>
 								Lodi, CA 95240<br>
 								USA<br>
+								<h4 class="widget-title"> Mailing Address</h4>
+								PO Box 1088<br>
+								Lodi, CA 95241<br>
+
 							<!-- </p> -->
 						</div>
 						<h4 class="widget-title"> Hours</h4>
@@ -209,18 +101,13 @@
 					</div>
 
 				</div>
+
+
 			</div>
-		</footer>
-	</div>
+					<div class="google-maps">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15413.020624260733!2d-121.28128738279095!3d38.136994452224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809aa01886eabfa9%3A0x7dca5d30ea19c158!2s27+Locust+St%2C+Lodi%2C+CA+95240!5e0!3m2!1sen!2sus!4v1507323106892&key=AIzaSyCTp6jz2iIz09wTWvMxMKTco5oEAdtWmn4" width="600" height="450" frameborder="0" style="border:0" ></iframe>
+
+		</div>
 
 
-	</body>
-</div>
-
-
-</body>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="static/render.js"></script>
-
-</html>
+			{%endblock%}

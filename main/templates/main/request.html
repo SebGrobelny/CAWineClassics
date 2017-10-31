@@ -1,67 +1,13 @@
-<!DOCTYPE html>
+{% extends "main/home.html" %}
 
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>California Selection</title>
-
-    <link href="/static/style.css" rel="stylesheet" type="text/css">
-
-<body class ="home-page"  >
-			<header id="masthead" class="site-header" role="banner">
-
-			<div class="site-branding">
-
-				<div class = "dropMenu">
-
-					<div id="mobileMenu" onclick = "viewMenu()">
-	  					<div class="bar1"></div>
-	  					<div class="bar2"></div>
-	  					<div class="bar3"></div>
-					</div>
-
-					<div id = "dropdown">
-
-		  				<div class = "sub-nav"><a href="default.asp">About Us</a></div>
-  						<div class = "sub-nav"><a href="/still_wine">Still Wine</a></div>
-  						<div class = "sub-nav"><a href="news.asp">Sparkling Program</a></div>
-  						<div class = "sub-nav"><a href="/contact">Contact Us</a></div>
-  						<div class = "sub-nav"><a href="about.asp">What's New</a></div>
-  						<div class = "sub-nav"><a href="about.asp">Buy Our Wine</a></div>
-	  				</div>
-
-  				</div>
-
-				<div id = "nav-img">
-					<a href = "/home"><img width="50" height="50" src="http://demo.cedaro.com/wp-content/uploads/sites/4/2014/11/caldwell-icon.png"></a>
-				</div>
-				<div> 
-					<a> <h4 class="widget-title"> California Wine Classics </h4> </a>
-				</div>
-
-
-				<div class = "topbar"><a href="/about">About Us</a></div>
-  				<div class = "topbar"><a href="/still_wine">Still Wine</a></div>
-  				<div class = "topbar"><a href="/sparkling">Sparkling Program</a></div>
-  				<div class = "topbar"><a href="/contact">Contact Us</a></div>
-  				<div class = "topbar"><a href="/news">What's New</a></div>
-  				<div class = "topbar"><a href="/purchase">Buy Our Wine</a></div>
-			
-
-			</div>
-
-		</header>
+{% block content %}
 	<div id = "summary">
 		<p>
 			Thank you for your interest in our products.<br>
 			Please share some details so we can send wine to your table!<br>
 		</p>
 
-		<form action="{{ url_for('contact_db') }}" name = "usrform" method="post">
+		<form name = "usrform" method="POST">{% csrf_token %}
 			<label> Name: </label> <br>
 		    <input placeholder="First " type="text" name="first" > <input placeholder="Last " type="text" name="last" ><br>
 		    <label> Mailing Address: </label> <br>
@@ -78,6 +24,29 @@
 
 		   	<label>You've requested:</label>
 		   	<table id = "requested">
+						<tr>
+							<td>Request</td>
+							<td>Variety</td>
+							<td>AVA</td>
+							<td>Inventory</td>
+							<td>Units</td>
+							<td>Lot</td>
+							<td>Comments</td>
+
+						</tr>
+
+					{% for wine in requestedwine %}
+						<tr>
+						    <td><input id= {{ wine.lot }} name="check" type="checkbox" 
+						    	value= {{wine.lot}} ></td>
+						    <td>{{ wine.variety}}</td>
+						    <td>{{ wine.ava }}</td>
+						    <td>{{ wine.current }}</td>
+						    <td>{{ wine.units  }}</td>
+						    <td>{{ wine.lot }}</td>
+						    <td>{{ wine.comments }}</td>
+						</tr>
+					{% endfor %}
 
 		   	</table>
 
@@ -85,80 +54,36 @@
 		</form>
 
 	</div>
-			<footer id="footer" class="site-footer" role="contentinfo" itemscope>
-
-			<section id="featured-content" class="featured-content hero-content">
-
-				<h2 class = "screen-reader-text"> Featured Content </h2>
-
-
-				<div class="block-grid block-grid-3">
-
-
-						<div id="featured-post-1" class = "featured-post block-grid-item has-post-thumbnail" style = "background-image: url(/static/img/IMG_2429.jpg)">
-							<a class ="featured-image">
-								<img src="/static/img/IMG_2429.jpg"
-								  alt= "Our Facility" itemprop="image" scale="0">
-
-							</a>
-							<h3 class="block-grid-item-title" itemprop="headline">
-								<!-- 2429 -->
-								<a> Winery </a>
-							</h3>
-
-						</div>
-
-						<div id="featured-post-1" class = "featured-post block-grid-item has-post-thumbnail" style = "background-image: url(/static/img/IMG_2459.jpg)">
-							<a class ="featured-image">
-								<img src="/static/img/IMG_2459.jpg"
-								  alt= "Our Products" itemprop="image" scale="0">
-
-							</a>
-							<h3 class="block-grid-item-title" itemprop="headline">
-								<!-- 2459 -->
-								<a> Wine</a>
-							</h3>
-
-						</div>
-
-						<div id="featured-post-1" class = "featured-post block-grid-item has-post-thumbnail" style = "background-image: url(/static/img/IMG_8271.jpg)">
-							<a class ="featured-image">
-								<img src="/static/img/IMG_8271.jpg"
-								  alt= "Contact Us" itemprop="image" scale="0">
-
-							</a>
-							<h3 class="block-grid-item-title" itemprop="headline">
-								<!-- 8271 -->
-								<a href="/contact"> Contact Us</a>
-							</h3>
-
-						</div>
-					</div>
-
-			</section>
-			<div id="tertiary" class = "widget-area widget-area--footer" role="complementary" itemscope>
+{% endblock %}
+			{%block footer%}
+						<div id="tertiary" class = "widget-area widget-area--footer" role="complementary" itemscope>
 				<div class="block-grid block-grid-3">
 					<div id ="text-3" class = "widget widget_text block-grid-item">
-						<h4 class="widget-title">Contact Info</h4>
+						<h4 class="widget-title"> <a href = "/contact"> Contact Info </a> </h4>
 						<div class="textwidget">
 				<!-- 			<p> -->
 								Phone: +1 (209) 727-0396<br>
 								Fax: +1 (209) 727-0391<br>
 								<a href = "/team"> Robert Indelicato </a> <br>
 								<a href="mailto:robert@californiawineclassics.com">robert@californiawineclassics.com </a><br>
-								<a href = "/team"> Leslie Bloudoff </a><br>
+								<a href = "/leslie"> Leslie Bloudoff </a><br>
 								<a href="mailto:leslie@californiawineclassics.com">leslie@californiawineclassics.com </a><br>
 
 <!-- 							</p> -->
 						</div>
 					</div>
 					<div id ="text-3" class = "widget widget_text block-grid-item">
-						<h4 class="widget-title"> Location </h4>
+						<h4 class="widget-title"> <a href="/winery" > Location </a> </h4>
 						<div class="textwidget">
 							<!-- <p> -->
+								<h4 class="widget-title"> Address</h4>
 								27 Locust Street  <br>
 								Lodi, CA 95240<br>
 								USA<br>
+								<h4 class="widget-title"> Mailing Address</h4>
+								PO Box 1088<br>
+								Lodi, CA 95241<br>
+
 							<!-- </p> -->
 						</div>
 						<h4 class="widget-title"> Hours</h4>
@@ -172,27 +97,36 @@
 						<h4 class="widget-title"> <a href="/news"> What's New </a></h4>
 						<ul>
 						<li>
-							
-							<img width="50" height="50" src="static/img/tweet.jpg" >
-						
+							<a target="_blank" href = "https://twitter.com/CAWineClassics?lang=en">
+							<img width="50" height="50" src="static/img/tweet.jpg" style="border:1px solid black; border-radius: 10px;">
+							</a>
 						</li>
 						<li>
-							<a href = "https://www.instagram.com/cawineclassics/">
+							<a target="_blank" href = "https://www.instagram.com/cawineclassics/">
 								<img width="80" height="80" src="static/img/ig.jpg" >
 							</a>
 						</li>
 						<li>
-							<a href = "fb.me/CAWineClassics">
-								<img width="50" height="50" src="static/img/facebookicon.png" >
+							<a target="_blank" href = "https://www.facebook.com/CAWineClassics">
+								<img width="50" height="50" src="static/img/facebookicon.png" style="margin-right: 10px">
+							</a>
+						</li>
+						<li>
+							<a target="_blank" href = "https://www.linkedin.com/company/california-wine-classics">
+								<img width="50" height="50" src="static/img/linkedin.jpg" >
 							</a>
 						</li>
 						</ul>
 					</div>
 
 				</div>
+
+
 			</div>
-		</footer>
+					<div class="google-maps">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15413.020624260733!2d-121.28128738279095!3d38.136994452224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809aa01886eabfa9%3A0x7dca5d30ea19c158!2s27+Locust+St%2C+Lodi%2C+CA+95240!5e0!3m2!1sen!2sus!4v1507323106892&key=AIzaSyCTp6jz2iIz09wTWvMxMKTco5oEAdtWmn4" width="600" height="450" frameborder="0" style="border:0" ></iframe>
 
-</body>
+		</div>
 
-<script src="static/render.js"></script>
+
+			{%endblock%}

@@ -60,16 +60,48 @@ def contact(request):
 	return render(request,'main/contact.html', {'form': form})
 
 def search(request):
-	
-	foundwine=None
+
 	#check to see if method is get
 	if request.method == "GET":
 
 		variety = request.GET.get('search')
-		foundwine = Inventory.objects.filter(variety__icontains=variety)
+		form = RequestForm()
 
-	return render(request, 'main/search.html', {'foundwine':foundwine})
+		#overcoming the return None in some cases
+		try:
+			foundwine = Inventory.objects.filter(variety__icontains=variety)
 
+		except:
+			foundwine = None
+
+	elif request.method == "POST":
+		form = RequestForm(request.POST)
+
+		if form.is_valid():
+
+			requestedwine = request.POST.getlist('check')
+			for wine in requestedwine:
+				print wine
+				form = RequestForm(request.POST)
+				inventory = Inventory.objects.filter(lot=wine)
+
+				requested  = form.save(commit=False)
+				requested.requestedwine= str(inventory[0].variety)+" , "+str(inventory[0].lot)
+
+				time = str(datetime.now(timezone('US/Pacific')))
+				time = time.split(".")[0]
+				requested.time = time
+
+				requested.save()
+
+
+			return redirect('home')
+
+	else:
+		foundwine = None
+		form = RequestForm()
+
+	return render(request, 'main/search.html', {'foundwine':foundwine, 'form':form})
 
 
 def winery(request):
