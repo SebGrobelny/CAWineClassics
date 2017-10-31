@@ -1,7 +1,4 @@
 # import modules
-import pandas as pd
-import sqlite3
-from pandas.io import sql
 import sys,os 
 
 from django.core.wsgi import get_wsgi_application
