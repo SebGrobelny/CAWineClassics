@@ -4,9 +4,7 @@ import sqlite3
 from pandas.io import sql
 import sys,os 
 
-from django.core.wsgi import get_wsgi_application
-
-filename= 'out.csv'
+filename= 'Final.csv'
 # Full path to your django project directory 
 your_djangoproject_home="/home/sgrobelny/desktop/seb-django/mysite" 
 
@@ -15,10 +13,8 @@ sys.path.append(your_djangoproject_home)
 print sys.path
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
-application = get_wsgi_application()
 
-from main.models import Inventory 
-import csv
+from models import Inventory 
 
 dataReader = csv.reader(open(filename), delimiter=',', quotechar='"') 
 for row in dataReader: 		
@@ -38,4 +34,4 @@ for row in dataReader:
 		inventory.other = row[14]
 		inventory.promised = row[15]
 		inventory.available = row[16]
-		inventory.comments = row[17]
+		invenotry.comments = row[17]
