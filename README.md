@@ -49,7 +49,7 @@ Design
 
 Framework Choice
 ----------------
-I chose to build the application in Django due largely to my familiarity with using Python as a server-side language. I previ Since Django offers the Model-View-Template I chose to construct my databases this way and to do my URL-routing in a cleaner more structured way than I had previously done using the Flask applicaiton. Django also offers a Templating language which I took full advantage of when rendering my database queries in still_wine.html and search.html. Djanog also offers a seperate settings.py file for configuring database connections which my app requires.
+I chose to build the application in Django due largely to my familiarity with using Python as a server-side language. I previously built the application in Flask and JavaScript but found the Django offers a cleaner approach to the server-side code I was writing into a single Flask file and rendering I was doing in my JavaScript file.  Since Django offers the Model-View-Template I chose to construct my databases this way and to do my URL-routing in a cleaner more structured way than I had previously done using the Flask applicaiton. Django also offers a Templating language which I took full advantage of when rendering my database queries in still_wine.html and search.html. Djanog also offers a seperate settings.py file for configuring database connections which my app requires.
 
 models.py
 ----------
