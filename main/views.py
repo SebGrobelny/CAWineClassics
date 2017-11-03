@@ -55,7 +55,7 @@ def contact(request):
 
 			contact.save()
 			# return redirect('home')
-			return HttpResponseRedirect("https://californiawineclassics.com/")
+			return HttpResponseRedirect("https://californiawineclassics.com/home")
     #otherwise render form 
 	else:
 		form = ContactForm()
@@ -117,7 +117,7 @@ def search(request):
 
 
 			# return redirect('home')
-			return HttpResponseRedirect("https://californiawineclassics.com/")
+			return HttpResponseRedirect("https://californiawineclassics.com/home")
 
 	else:
 		foundwine = None
@@ -176,7 +176,7 @@ def still_wine(request):
 
 
 			# return redirect('home')
-			return HttpResponseRedirect("https://californiawineclassics.com/")
+			return HttpResponseRedirect("https://californiawineclassics.com/home")
 
 	else:
 		reds = Inventory.objects.filter(color='Red')
