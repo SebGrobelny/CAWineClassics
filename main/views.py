@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render,redirect
 
+from django.http import HttpResponseRedirect
+
 from .models import Inventory,Contact
 
 from .forms import ContactForm
@@ -52,7 +54,8 @@ def contact(request):
 
 
 			contact.save()
-			return redirect('home')
+			# return redirect('home')
+			return HttpResponseRedirect("https://californiawineclassics.com/")
     #otherwise render form 
 	else:
 		form = ContactForm()
@@ -113,7 +116,8 @@ def search(request):
 				requested.save()
 
 
-			return redirect('home')
+			# return redirect('home')
+			return HttpResponseRedirect("https://californiawineclassics.com/")
 
 	else:
 		foundwine = None
@@ -171,7 +175,8 @@ def still_wine(request):
 				requested.save()
 
 
-			return redirect('home')
+			# return redirect('home')
+			return HttpResponseRedirect("https://californiawineclassics.com/")
 
 	else:
 		reds = Inventory.objects.filter(color='Red')
